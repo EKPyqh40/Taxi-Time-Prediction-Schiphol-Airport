@@ -1,0 +1,26 @@
+{
+    "names": [
+        "t",
+        "trk",
+        "ssr",
+        "x",
+        "y",
+        "fl",
+        "gs",
+        "heading",
+        "f_id",
+        "mode-s"
+    ],
+    "dtype": {
+        "t": "int",
+        "trk": "int",
+        "ssr": "int",
+        "x": "float",
+        "y": "float",
+        "fl": "int",
+        "gs": "int",
+        "heading": "int",
+        "f_id": "str",
+        "mode-s": "int"
+    }
+}
