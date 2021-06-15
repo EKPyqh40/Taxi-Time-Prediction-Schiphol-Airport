@@ -1,0 +1,35 @@
+{
+    "paths": {
+        "data_path": "../data",
+        "maps": "../data/maps",
+        "dxf": "../data/maps/dxf/",
+        "bmap_file": "../data/maps/bmap/airport_map.png",
+        "bmap_docs": "../data/maps/bmap/docs/docs.json",
+        "astra_file": "../data/astra/20190219.ast.gz",
+        "astra_docs": "../data/astra/docs/docs.json",
+        "polygons": "../data/polygons/"
+    },
+    "simulation": {
+        "t_start": 29520
+    },
+    "screen": {
+        "width": 800,
+        "height": 600,
+        "fontsize": 16,
+        "maps_on": ["Twrsysdisplay blankingmap", "polygons"],
+        "bmap_on": 0
+    },
+    "colors": {
+        "white": [255, 255, 255],
+        "black": [0, 0, 0],
+        "dark_grey": [100, 100, 100],
+        "light_grey": [200, 200, 200],
+        "red": [255, 0, 0],
+        "green": [0, 255, 0],
+        "blue": [0, 0, 255],
+        "yellow": [255,255,0],
+        "pink": [255, 0, 255],
+        "bluegreen": [0, 255, 255]
+    }
+}
+
