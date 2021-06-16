@@ -1,0 +1,176 @@
+{
+    "flt_sep_id": {
+        "type": ["meta"]
+    },
+    "flt_range": {
+		"type": ["meta"]
+	},
+    "final_trwy": {
+		"type": ["meta", "train"],
+		"test_eq": "trwy"
+	}, 
+    "t0_predict": {
+		"type": ["meta"]
+	},
+    "f_id_sep": {
+		"type": ["meta"]
+	},
+    "t_taxi": {
+		"type": ["y"]
+	},
+    "type": {
+		"type": ["meta"]
+	},
+    "rwy": {
+		"type": ["meta"]
+	},
+    "red_zone": {
+		"type": ["meta"]
+	},
+    "s_missed_rwy": {
+		"type": ["meta"]
+	},
+    "s_missed_red_zone": {
+		"type": ["meta"]
+	},
+    "t_spent": {
+		"type": ["meta"]
+	},
+    "horizon": {
+		"type": ["meta"]
+	},
+    "t_predict": {
+		"type": ["meta", "timestamp", "pf"]
+	},
+    "trwy": {
+		"type": ["cat"]
+	},
+    "actype": {
+		"type": ["cat", "cardinal"]
+	}, 
+    "obt_predict": {
+		"type": ["timestamp"]
+	},
+    "depgnr": {
+		"type": ["cat"]
+	},
+    "sid": {
+		"type": ["cat"]
+	},
+    "n_civil": {
+		"type": ["num"]
+	},
+    "n_dep": {
+		"type": ["num"]
+	},
+    "n_arr": {
+		"type": ["num"]
+	},
+    "wtc": {
+		"type": ["cat"]
+	},
+    "rvr5000_1000": {
+		"type": ["num"]
+	},
+    "rvr1500_300": {
+		"type": ["num"]
+	},
+    "rvr550_200": {
+		"type": ["num"]
+	},
+    "rvr350": {
+		"type": ["num"]
+	},
+    "rvrcat": {
+		"type": ["cat"]
+	},
+    "wind_dir": {
+		"type": ["cat"]
+	},
+    "wind_dir_std": {
+		"type": ["num"]
+	},
+    "wind_spd": {
+		"type": ["num"]
+	},
+    "wind_spd_std": {
+		"type": ["num"]
+	},
+    "wind_stoten": {
+		"type": ["num"]
+	},
+    "temp": {
+		"type": ["num"]
+	},
+    "dew": {
+		"type": ["num"]
+	},
+    "snow": {
+		"type": ["num"]
+	},
+    "snow_heavy": {
+		"type": ["num"]
+	},
+    "rain_cool": {
+		"type": ["num"]
+	},
+    "cb": {
+		"type": ["num"]
+	},
+    "lightning": {
+		"type": ["num"]
+	},
+    "rvr5000_2000": {
+		"type": ["num"]
+	},
+    "plr1": {
+		"type": ["cat"]
+	},
+    "plr2": {
+		"type": ["cat"]
+	},
+    "ptr1": {
+		"type": ["cat"]
+	},
+    "ptr2": {
+		"type": ["cat"]
+	},
+    "alr1": {
+		"type": ["cat"]
+	},
+    "alr2": {
+		"type": ["cat"]
+	},
+    "atr1": {
+		"type": ["cat"]
+	},
+    "atr2": {
+		"type": ["cat"]
+	},
+    "local_doy": {
+		"type": ["cat", "circular"],
+        "n_bins": 24
+	},
+    "local_dow": {
+		"type": ["cat"]
+	},
+    "local_mod": {
+		"type": ["cat", "circular"],
+        "n_bins": 48
+	}, 
+    "local_week": {
+		"type": ["cat"]
+	},
+    "t_taxi_start": {
+		"type": ["meta"]
+	},
+    "t_taxi_end": {
+		"type": ["meta", "pf"]
+	},
+	"trwy_ext": {
+		"type": ["cat"]
+	},
+	"center_crossing": {
+		"type": ["cat"]
+	}
+}
