@@ -1,8 +1,72 @@
 # Taxi-Time-Prediction-Schiphol-Airport
 
-Taxi Time Prediction at Schiphol Airport
+This repository contains the code for the final article "Taxi Time Prediction with Classical and Auto Machine
+Learning at Schiphol Airport" of the master thesis by Christophe Vakaet.
+
+## Article
+
+The article can be found [here](https://github.com/EKPyqh40/Taxi-Time-Prediction-Schiphol-Airport/blob/main/Thesis_AIAA.pdf).
+
+### Abstract
+
+Taxi time predictions are used by air traffic controllers to optimally release aircraft from the gate such that efficiency losses due to queuing are minimized, while runway capacity is maintained. More accurate taxi times can therefore result in improved airport surface operations and reduce air traffic controller workload. This article proposes a methodology to develop taxi time predictor and applies this methodology to Schiphol airport. The methodology combines novel data-driven predictors with different improvements and extensive performance evaluation. One such improvement involves using recent taxi time prediction errors to improve upcoming taxi time predictions. During evaluation, this article extends conventional analysis by analyzing different prediction horizons and performance metrics. Applying the methodology at Schiphol airport resulted in a predictor that increased the fraction of flights with a taxi time error of less than two minutes from 64.41% to 67.91% compared to the currently operational manual decision tree predictor.
+
+## Code Overview
 
 ![Code Diagram](code_diagram.png "Code Diagram")
 
-<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2021-06-16T14:16:11.721Z\&quot; agent=\&quot;5.0 (Windows)\&quot; etag=\&quot;gjXfzUv26Y08FaPBtKbD\&quot; version=\&quot;14.7.8\&quot; type=\&quot;device\&quot;&gt;&lt;diagram id=\&quot;Cz3nSBxjieLtS3n7N6r_\&quot; name=\&quot;Page-1\&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
-<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+This repository is subdivided into six sections: data, data viewer, data preparation, modelling, results, and misc. The diagram above provides an overview of the links between the different sections, as well as the links between files within a section. Below each section is further detailed.
+
+## Data
+
+Due to intellectual property issues, most data has been redacted. However the data strcuture and description of the content are available.
+
+## Data Viewer
+
+![Radar Example](data_viewer/screenshot.png "Radar Example")
+
+The data viewer is a Python program capable of visualizing astra data together with different maps and flt data. This program has been used for multiple purposes. First the program has been used to derive the runway, taxiway, and other polygons. Secondly the program has been used to verify the results from the data preparation phase.
+
+### Controls
+
+|keys| function|
+|-|-|
+|w, a, s, d| pan|
+|q, e| zoom|
+|r, f| increase/decrease speed (time)|
+|z| reverse time |
+|space| pause |
+|number keys| toggle layers |
+
+## Data Preparation
+
+This section contains the code that prepares the different raw data into a single departures table for modelling.
+
+## Modelling
+
+This section contains the code for the different taxi time prediction models. The code additionally generates the performance results for the evaluation of the different models.
+
+## Results
+
+This section contains and additionally evaluates the results of the modelling phase.
+
+## Misc
+
+Two extra files have been added to the repository that contain some extra information:
+
+* verification.ipynb
+* queueing.ipynb
+
+### verification.ipynb
+
+Verfiication.ipynb contains queries to verify different aspects of the data preparation phase.
+
+### queueing.ipynb
+
+Queuing.ipynb contains analysis of the queueing data from the data preparation phase. The goal was to link potentially link taxi time, and taxi time prediction error with the calculated average queue times. The quick analysis performed in this file is however unable to find such a link. More investigation is required.
+
+## To Do
+
+* relative file paths
+* verify code with new architecture (rerun)
+* eliminate duplicate code (modelling)
