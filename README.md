@@ -3,6 +3,8 @@
 This repository contains the code for the final article "Taxi Time Prediction with Classical and Auto Machine
 Learning at Schiphol Airport" of the master thesis by Christophe Vakaet.
 
+> Note: The files in this repository have been restructured and renamed. Most of the names and file paths within the code are therefore currently broken.
+
 ## Article
 
 The article can be found [here](https://github.com/EKPyqh40/Taxi-Time-Prediction-Schiphol-Airport/blob/main/Thesis_AIAA.pdf).
@@ -67,6 +69,6 @@ Queuing.ipynb contains analysis of the queueing data from the data preparation p
 
 ## To Do
 
-* relative file paths
+* redo file paths and names
 * verify code with new architecture (rerun)
 * eliminate duplicate code (modelling)
