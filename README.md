@@ -88,7 +88,7 @@ Contains the generic reduction query
 
 Contains several functions used in the pgsql queries, and verification data for the queueing algorithm.
 
-### astra_reduce_process_query.pgsql
+#### astra_reduce_process_query.pgsql
 
 Contains the query for the final materialized view (astra_processed). This materialized view contains a single record for each track.
 
