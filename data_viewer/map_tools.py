@@ -1,25 +1,22 @@
+# Import Modules
 import ezdxf
 import pandas as pd
 from io import StringIO
 
-def dxf_to_df_lines(file):
-    doc = ezdxf.readfile(file)
-    msp = doc.modelspace()
-    lines = []
-    for e in msp:
-        line = [e.dxf.layer, e.dxftype()]
-        if e.dxftype() == "LINE":
-            lines.append(list(e.dxf.start[:2]) + list(e.dxf.end[:2]) + line)
-        elif e.dxftype() == "LWPOLYLINE":
-            for i in range(len(e)-1):
-                lines.append(list(e[i][:2]) + list(e[i+1][:2]) + line)
-                if sum(e[i][2:])!=0.0:
-                    print('LWPolyline start width, end width, bulge not supported, hence ignored. ', e[i])
-        else:
-            print('Dxftype {} not supported, hence ignored'.format(e.dxftype()))
-    return pd.DataFrame(lines, columns=['x1', 'y1', 'x2', 'y2', 'layer', 'dxftype'])
-
 def dxf_to_dict(file):
+    """Reads dxf files and provides a dictionary with keys for the different dxf layers
+    and values of the points contained within the LINEs and LWPOLYLINEs in that layer.
+
+    Parameters
+    ----------
+    file : file_path
+        Path to the dxf file
+
+    Returns
+    -------
+    dict
+        Dictionary containing the different points of the different LINEs and LWPOLYLINEs of the dxf file
+    """
     dxf_dict = {}
     doc = ezdxf.readfile(file)
     msp = doc.modelspace()
@@ -40,6 +37,7 @@ def dxf_to_dict(file):
             dxf_dict[e.dxf.layer] = {e.dxftype(): [points]}
     return dxf_dict
 
+# Archive
 def reduced_flightplan(file, n):
     with open(file, 'r') as f:
         lines_in = f.readlines()
@@ -48,3 +46,21 @@ def reduced_flightplan(file, n):
         out += ','.join(line.split(';')[:n])+'\n'
     
     return StringIO(out)
+
+# Archive
+def dxf_to_df_lines(file):
+    doc = ezdxf.readfile(file)
+    msp = doc.modelspace()
+    lines = []
+    for e in msp:
+        line = [e.dxf.layer, e.dxftype()]
+        if e.dxftype() == "LINE":
+            lines.append(list(e.dxf.start[:2]) + list(e.dxf.end[:2]) + line)
+        elif e.dxftype() == "LWPOLYLINE":
+            for i in range(len(e)-1):
+                lines.append(list(e[i][:2]) + list(e[i+1][:2]) + line)
+                if sum(e[i][2:])!=0.0:
+                    print('LWPolyline start width, end width, bulge not supported, hence ignored. ', e[i])
+        else:
+            print('Dxftype {} not supported, hence ignored'.format(e.dxftype()))
+    return pd.DataFrame(lines, columns=['x1', 'y1', 'x2', 'y2', 'layer', 'dxftype'])

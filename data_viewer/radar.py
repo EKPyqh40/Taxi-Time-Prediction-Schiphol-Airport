@@ -1,5 +1,4 @@
-# COLORS = [DARK_GREY, RED, GREEN, BLUE, YELLOW, PINK, BLUEGREEN, BLACK]
-
+# Import modules
 from pathlib import Path
 import pygame
 import pandas as pd
@@ -13,6 +12,7 @@ import os
 import sys
 import struct
 
+# Read Settings
 os.chdir(Path(__file__).absolute().parent)
 with open("settings.json", "r") as f:
     settings = json.load(f)
@@ -29,14 +29,21 @@ COLORS = [settings["colors"]["dark_grey"],
 ]
 settings["screen"]["size"] = (settings["screen"]["width"], settings["screen"]["height"])
 
+# Init pygame
 pygame.init()
 screen = pygame.display.set_mode(settings["screen"]["size"])
 font = pygame.font.Font(None, settings["screen"]["fontsize"])
 
+# Generate layers: 
+# all polygons in the polygon folder are a single layer
+# each layer of the dxf files are the other layers 
+
+# Read polygons
 polygons = {}
 for path in glob.iglob(settings["paths"]["polygons"] + "*.json"):
     with open(path) as f:
         polygons.update(json.load(f))
+
 
 # Extremely Ugly retrofit to be able to handle multiple polygons with the same name in a single json list
 # Please Improve :D
@@ -56,6 +63,7 @@ while not unpacked:
 layers_data = {'polygons': {
     "LWPOLYLINE CLOSED": layers_data
 }}
+
 for path in glob.iglob(settings["paths"]["dxf"] + "*.dxf"): # alt: with open("data/layers.json") as f: l = json.load(f)
     layers_data.update(dxf_to_dict(path))
 layers_name = np.array(list(layers_data))
@@ -88,10 +96,12 @@ layers_d = True
 #                 print("Layer type '{}' not supported".format(layer_type))
 # test = pd.DataFrame(data=test, columns=["layer", "x1", "y1", "x2", "y2"])
 
+# bitmap background layer (lvnl aerodrome chart)
 bmap_data = pygame.image.load(settings["paths"]["bmap_file"]).convert()
 with open(settings["paths"]["bmap_docs"], "r") as f:
     bmap_docs = json.load(f)
 
+# read astra
 with open(settings["paths"]["astra_docs"], "r") as f:
     ast_docs = json.load(f)
 ast_data = pd.read_csv(settings["paths"]["astra_file"], delimiter=";", names=ast_docs["names"], dtype=ast_docs["dtype"])
@@ -102,12 +112,14 @@ ast_data[~ast_data['f_id'].isna()]
 #     names=fp_columns)
 # fp_data = fp_data[["acid", "adep", "dest", "a_c_type", "l_rwy_id", "to_rwy_id"]]
 
+# Intialize program
 t_on = True
 t = min(ast_data['t']) + settings["simulation"]["t_start"]
 
 x, y, z, dx, dy, dz = 0, 0, 0, 0, 0, 0
 ppm = .1 * (2**.5)**z
 
+# Generate aircraft sprite (dot)
 ac_surface = pygame.Surface((10,10))
 ac_surface.fill(settings["colors"]["pink"])
 ac_surface.set_colorkey(settings["colors"]["pink"])
@@ -363,7 +375,7 @@ while running:
     # screen.blit(polygon_screen, (0,0))
 
     
-
+    # Generate the different text on screen
     for j, line in enumerate(text_tl): # Performance: Only when text_tl changes
         # if not str(line) in cache:
         #     cache[str(line)] = font.render(line, False, settings["colors"]["black"], settings["colors"]["white"])

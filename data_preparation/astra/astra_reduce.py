@@ -1,3 +1,4 @@
+# Import Modules
 import psycopg2
 import time
 import sys
@@ -6,6 +7,7 @@ import re
 
 timer_start = time.time()
 
+# connect to postgresql
 conn = psycopg2.connect( \
     database="thesis",
     user = "postgres",
@@ -14,10 +16,12 @@ conn = psycopg2.connect( \
     )
 cur = conn.cursor()
 
+# read generic query
 with open("generic_astra_reduce_query.pgsql", "r") as f:
 # with open("sql/astra/astra_process/astra_process_query.pgsql") as f:
     generic_query = f.read()
 
+# If paralel, normal, or manual
 if len(sys.argv) >= 6:
     settings = sys.argv[1:6]
 elif len(sys.argv) >=4:
@@ -28,15 +32,19 @@ else:
 
 t_start, t_stop, t_step, n_step_skip, n_step_offset = int(settings[0]), int(settings[1]), int(settings[2]), int(settings[3]), int(settings[4])
 
+# Generate list of completed astra_reduced
 completed = re.compile("C:\\\\tmp\\\\(\d+)_\d+\.csv").findall(",".join(glob.glob("C:\\tmp\\*.csv")))
 
+# Until the end
 t = t_start + t_step * n_step_offset 
-
 while t < t_stop:
     t_iter_start = time.time()
-    if str(t) not in completed:
 
+    # If it hasn't been reduced yet
+    if str(t) not in completed:
         print("t: {}, t_start: {}, t_stop: {}, t_step: {}, n_step_skip: {}, n_step_offset: {}".format(t, t_start, t_stop, t_step, n_step_skip, n_step_offset))
+
+        # Execute the generic query with the run specific settings to generate a temporary table
         run = {
             "name": "{}_{}".format(t, t + t_step),
             "start": t,
@@ -56,14 +64,18 @@ while t < t_stop:
         # print(query)
         cur.execute(query)
 
+        # Download the results of the query
         query = """
         COPY (SELECT * FROM "{name}") TO '{folder}{name}.csv' DELIMITER ',' CSV HEADER;
         """.format(**run)
         cur.execute(query)
 
+        # Rollback the temporary table (it has been downloaded)
         conn.rollback()
 
         print("Completed in {}s".format(int(time.time() - t_iter_start)))
+    
+    # Calculate next step
     t += n_step_skip * t_step
 
 print(time.time()-timer_start)
